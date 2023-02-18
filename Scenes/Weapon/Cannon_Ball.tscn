@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Weapon/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://art/ship/cannonball.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="CaonnonBall" type="Area2D"]
+script = ExtResource( 1 )
+speed = 700
+basic_damage = 50
+aoe_damage = 20
+cross_level = 2
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -2 )
+shape = SubResource( 1 )
