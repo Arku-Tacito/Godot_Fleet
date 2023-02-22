@@ -13,9 +13,10 @@ aoe_damage = 20
 cross_level = 2
 
 [node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -2 )
+position = Vector2( 2, 0 )
 shape = SubResource( 1 )

@@ -19,5 +19,6 @@ func _on_Trigger_firebullet(bullet_obj, position, rotation, target):
 	bu.position = position
 	bu.rotation = rotation
 	bu.velocity = bu.basic_velocity.rotated(bu.rotation)
-	bu.target = target
+	# bu.target = target
+	bu.target = $Target/Target2		# 测试目标
 	add_child(bu)
