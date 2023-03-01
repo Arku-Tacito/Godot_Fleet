@@ -1,18 +1,13 @@
 extends Node2D
 
+# 处理爆炸信号
+func _on_explosion_effect(eff_obj, position, rotation):
+	var eff = eff_obj.instance()
+	eff.global_position = position
+	eff.global_rotation = rotation
+	add_child(eff)
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+# 处理发射子弹的信号
 func _on_Trigger_firebullet(bullet_obj, position, rotation, target):
 	var bu = bullet_obj.instance()
 	bu.position = position
@@ -20,4 +15,15 @@ func _on_Trigger_firebullet(bullet_obj, position, rotation, target):
 	bu.velocity = bu.basic_velocity.rotated(bu.rotation)
 	# bu.target = target
 	bu.target = $Target		# 测试目标
+	bu.connect("explode", self, "_on_explosion_effect")	# 连接爆炸信号
 	add_child(bu)
+
+# 连接所有子弹发射信号
+func connect_firebullet():
+	for child in get_children():
+		for group in  child.get_groups():
+			if group == "weapon_battery":
+				child.get_node("Trigger").connect("firebullet", self, "_on_Trigger_firebullet")
+
+func _ready():
+	connect_firebullet()

@@ -49,6 +49,9 @@ func one_bullet(delta):
 					this_target)
 		cur_gen_cd = gen_cd
 		cur_bullet_n -= 1
+		
+func _ready():
+	add_to_group("trigger")
 
 # 有要生成的弹药数量, 则发送信号
 func _process(delta):

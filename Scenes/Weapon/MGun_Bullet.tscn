@@ -9,6 +9,7 @@ extents = Vector2( 2.0145, 2.24456 )
 
 [node name="MGunBullet" type="Area2D"]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource( 2 )
 aoe_damage = 0
 effect_explosion = ExtResource( 3 )

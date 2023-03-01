@@ -16,25 +16,37 @@ var basic_velocity = Vector2.RIGHT
 var velocity = Vector2.ZERO
 var acceleration_velocity = Vector2.ZERO	# 加速度, 用于平滑移动(导弹跟踪用)
 
+signal explode(eff_obj, position, rotation)
+
+# 承受伤害
+func do_damage(attacker):
+	print_debug("导弹伤害")
+	emit_signal("explode", effect_explosion, global_position, global_rotation)
+	queue_free()
+
 # 执行爆炸
 func do_explode():
 	if effect_explosion:
-		var eff = effect_explosion.instance()
-		eff.visible = true
-		add_child(eff)
+		emit_signal("explode", effect_explosion, global_position, global_rotation)
+#		var eff = effect_explosion.instance()
+#		eff.visible = true
+#		add_child(eff)
 
 # 降低击穿等级, 为0则等待销毁
 func cross_level_decline():
-	cross_level -= 1		# 击穿等级降低
-	if cross_level <= 0:	# 无法再碰撞, 停止并等待销毁
-		is_stop = true
-		for child in get_children():
-			child.visible = false
-		life_time = 30
 	do_explode()			# 执行爆炸
+	cross_level -= 1		# 击穿等级降低
+	if cross_level <= 0:	# 无法再碰撞, 销毁
+		queue_free()
+
+#		is_stop = true
+#		for child in get_children():
+#			child.visible = false	# 无法显示
+#		life_time = 30		# 给个时间放爆炸再销毁
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("bullet")
 	pass # Replace with function body.
 
 func _update_velocity_with_target(target_position:Vector2, delta):
@@ -58,7 +70,8 @@ func _physics_process(delta):
 
 # 撞击到物体
 func _on_body_entered(body):
+	print_debug(body.collision_layer)
 	match body.collision_layer:
-		1:	# 单位
+		1, 4:	# 单位, 飞行器, 导弹
 			body.do_damage(self)	# 承受伤害
 			cross_level_decline()	# 撞击一次降低一次击穿等级

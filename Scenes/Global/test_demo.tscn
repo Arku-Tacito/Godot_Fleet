@@ -17,7 +17,7 @@ __meta__ = {
 is_selected = true
 
 [node name="MGun2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 548, 243 )
+position = Vector2( 536, 507 )
 rotation = -1.5708
 __meta__ = {
 "_edit_group_": true
@@ -25,7 +25,7 @@ __meta__ = {
 is_selected = true
 
 [node name="Cannon" parent="." instance=ExtResource( 3 )]
-position = Vector2( 158, 244 )
+position = Vector2( 451, 102 )
 rotation = 1.5708
 __meta__ = {
 "_edit_group_": true
@@ -52,17 +52,3 @@ is_selected = true
 
 [node name="Target" parent="." instance=ExtResource( 4 )]
 position = Vector2( 444, 408 )
-
-[connection signal="firebullet" from="MGun/Trigger" to="." method="_on_Trigger_firebullet"]
-[connection signal="firebullet" from="MGun2/Trigger" to="." method="_on_Trigger_firebullet"]
-[connection signal="firebullet" from="Cannon/Trigger" to="." method="_on_Trigger_firebullet"]
-[connection signal="firebullet" from="Cannon2/Trigger" to="." method="_on_Trigger_firebullet"]
-[connection signal="firebullet" from="MachineGun/Trigger" to="." method="_on_Trigger_firebullet"]
-[connection signal="firebullet" from="MachineGun2/Trigger" to="." method="_on_Trigger_firebullet"]
-
-[editable path="MGun"]
-[editable path="MGun2"]
-[editable path="Cannon"]
-[editable path="Cannon2"]
-[editable path="MachineGun"]
-[editable path="MachineGun2"]

@@ -17,6 +17,9 @@ var status = STATUS.IDLE	# 基础状态
 
 onready var trigger = $Trigger	# 子弹发射器
 
+#func set_firebullet_fun(fun):
+#	connect("firebullet", trigger, fun)
+
 """基础函数"""
 # 状态执行
 func do_idle(delta):
@@ -85,6 +88,7 @@ func status_process(cur_status, delta):
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("weapon_battery")	# 将自己的节点列为武器平台分组
 	pass # Replace with function body.
 #
 # Called every frame. 'delta' is the elapsed time since the previous frame.
