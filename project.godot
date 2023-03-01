@@ -45,6 +45,15 @@ Left={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="unit"
+2d_physics/layer_2="bullet"
+2d_physics/layer_3="craft"
+2d_physics/layer_4="building"
+2d_physics/layer_5="human"
+2d_physics/layer_6="object"
+
 [physics]
 
 common/enable_pause_aware_picking=true

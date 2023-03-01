@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Weapon/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://art/ship/missile.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Effect/Explosion.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 6 )
@@ -19,13 +20,15 @@ linear_accel = 1.98
 scale = 7.0
 scale_random = 0.5
 
-[node name="CaonnonBall" type="Area2D"]
+[node name="Missile" type="Area2D"]
+collision_layer = 6
 script = ExtResource( 1 )
 speed = 300
 rotation_speed = 5.0
 basic_damage = 30
 aoe_damage = 30
 is_target_locked = true
+effect_explosion = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 5, 1.90735e-06 )
@@ -43,3 +46,5 @@ amount = 30
 lifetime = 2.0
 local_coords = false
 process_material = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

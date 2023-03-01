@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Global/test_demo.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Module/MachineGun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Module/Cannon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Module/MissileBattery.tscn" type="PackedScene" id=4]
-[ext_resource path="res://art/ship/machinegun.png" type="Texture" id=5]
 
 [node name="RootNode" type="Node2D"]
 script = ExtResource( 1 )
@@ -51,19 +50,8 @@ position = Vector2( 816, 246 )
 rotation = -1.5708
 is_selected = true
 
-[node name="Target" type="Node2D" parent="."]
-position = Vector2( 524, 519 )
-
-[node name="Sprite" type="Sprite" parent="Target"]
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 5 )
-
-[node name="Target2" type="Node2D" parent="Target"]
-position = Vector2( 134, 0 )
-
-[node name="Sprite" type="Sprite" parent="Target/Target2"]
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 5 )
+[node name="Target" parent="." instance=ExtResource( 4 )]
+position = Vector2( 444, 408 )
 
 [connection signal="firebullet" from="MGun/Trigger" to="." method="_on_Trigger_firebullet"]
 [connection signal="firebullet" from="MGun2/Trigger" to="." method="_on_Trigger_firebullet"]

@@ -15,7 +15,7 @@ var rotation_dir = 0	# 当前旋转角度
 var cur_cd = 0
 var status = STATUS.IDLE	# 基础状态
 
-onready var trigger = $Trigger
+onready var trigger = $Trigger	# 子弹发射器
 
 """基础函数"""
 # 状态执行
@@ -42,8 +42,21 @@ func do_attack(delta):
 func do_attack_fin():
 	status = STATUS.IDLE
 
+# 计算伤害
+func do_damage(attacker):
+	if attacker == null:
+		return
+
+	# 切换状态
+	status = STATUS.HIT
+	# 计算伤害
+	print_debug("承受伤害")
+	pass
+
+# 执行承受伤害, 这里不是计算伤害的地方, 主要用于播放动画
 func do_hit(delta):
 	pass
+
 func do_die(delta):
 	queue_free()
 	
@@ -65,6 +78,8 @@ func status_process(cur_status, delta):
 			do_die(delta)
 		STATUS.MOVE:
 			do_move(delta)
+		STATUS.HIT:
+			do_hit(delta)
 	if cur_cd > 0:
 		cur_cd -= 1
 
