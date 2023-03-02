@@ -1,5 +1,6 @@
 """子弹"""
 extends Area2D
+export var health = 20			# 基础生命
 export var speed = 500		 	# 速度
 export var rotation_speed = 1.0	# 转向速度
 export var life_time = 500	 # 基础存活时间
@@ -19,18 +20,16 @@ var acceleration_velocity = Vector2.ZERO	# 加速度, 用于平滑移动(导弹�
 signal explode(eff_obj, position, rotation)
 
 # 承受伤害
-func do_damage(attacker):
-	print_debug("导弹伤害")
-	emit_signal("explode", effect_explosion, global_position, global_rotation)
-	queue_free()
+func do_damage(damage_point):
+	health -= damage_point
+	if health <= 0:
+		emit_signal("explode", effect_explosion, global_position, global_rotation)
+		queue_free()
 
 # 执行爆炸
 func do_explode():
 	if effect_explosion:
 		emit_signal("explode", effect_explosion, global_position, global_rotation)
-#		var eff = effect_explosion.instance()
-#		eff.visible = true
-#		add_child(eff)
 
 # 降低击穿等级, 为0则等待销毁
 func cross_level_decline():
@@ -39,12 +38,14 @@ func cross_level_decline():
 	if cross_level <= 0:	# 无法再碰撞, 销毁
 		queue_free()
 
-#		is_stop = true
-#		for child in get_children():
-#			child.visible = false	# 无法显示
-#		life_time = 30		# 给个时间放爆炸再销毁
+# 撞击到物体
+# 这里因为要撞击导弹, 所以也把area的检测连到这里
+func _on_body_entered(body):
+	match body.collision_layer:
+		1, 4, 6:	# 单位, 飞行器
+			body.do_damage(basic_damage)	# 承受伤害
+			cross_level_decline()	# 撞击一次降低一次击穿等级
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("bullet")
 	pass # Replace with function body.
@@ -64,14 +65,6 @@ func _physics_process(delta):
 	if is_stop:
 		return
 	# 跟踪模式, 根据目标更新速度
-	if is_target_locked and target:
+	if is_target_locked and is_instance_valid(target):
 		_update_velocity_with_target(target.global_position, delta)
 	global_position += velocity * speed * delta
-
-# 撞击到物体
-func _on_body_entered(body):
-	print_debug(body.collision_layer)
-	match body.collision_layer:
-		1, 4:	# 单位, 飞行器, 导弹
-			body.do_damage(self)	# 承受伤害
-			cross_level_decline()	# 撞击一次降低一次击穿等级

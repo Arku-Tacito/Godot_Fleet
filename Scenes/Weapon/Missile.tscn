@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Effect/Explosion.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 6 )
+extents = Vector2( 16.5, 7 )
 
 [sub_resource type="ParticlesMaterial" id=2]
 flag_disable_z = true
@@ -38,7 +38,7 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 5, 1.90735e-06 )
+position = Vector2( 5.5, 0 )
 shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]

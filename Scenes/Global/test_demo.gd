@@ -14,7 +14,8 @@ func _on_Trigger_firebullet(bullet_obj, position, rotation, target):
 	bu.rotation = rotation
 	bu.velocity = bu.basic_velocity.rotated(bu.rotation)
 	# bu.target = target
-	bu.target = $Target		# 测试目标
+	if get_node_or_null("Target"):
+		bu.target = $Target		# 测试目标
 	bu.connect("explode", self, "_on_explosion_effect")	# 连接爆炸信号
 	add_child(bu)
 

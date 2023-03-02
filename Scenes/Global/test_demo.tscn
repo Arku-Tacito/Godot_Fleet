@@ -17,7 +17,7 @@ __meta__ = {
 is_selected = true
 
 [node name="MGun2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 536, 507 )
+position = Vector2( 717, 538 )
 rotation = -1.5708
 __meta__ = {
 "_edit_group_": true

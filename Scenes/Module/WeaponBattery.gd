@@ -4,7 +4,7 @@ extends KinematicBody2D
 enum STATUS {IDLE, DIE, ATTACK, HIT, MOVE}	# 状态类型
 
 """基础属性"""
-export var health = 100		# 血量
+export var health = 200		# 血量
 export var speed = 10		# 移动速度
 export var rotation_speed = 0	# 旋转速度
 export var CD = 50
@@ -14,6 +14,7 @@ var velocity = Vector2.ZERO	# 当前速度向量
 var rotation_dir = 0	# 当前旋转角度
 var cur_cd = 0
 var status = STATUS.IDLE	# 基础状态
+var attack_target = null	# 攻击目标
 
 onready var trigger = $Trigger	# 子弹发射器
 
@@ -38,7 +39,7 @@ func do_attack(delta):
 	# 发射弹药
 	if cur_cd == 0:
 		if trigger:
-			trigger.activate()
+			trigger.activate(attack_target)
 		cur_cd = CD
 	do_attack_fin()
 
@@ -46,15 +47,13 @@ func do_attack_fin():
 	status = STATUS.IDLE
 
 # 计算伤害
-func do_damage(attacker):
-	if attacker == null:
-		return
-
+func do_damage(damage_point):
 	# 切换状态
 	status = STATUS.HIT
 	# 计算伤害
-	print_debug("承受伤害")
-	pass
+	health -= damage_point
+	if health <= 0:
+		status = STATUS.DIE
 
 # 执行承受伤害, 这里不是计算伤害的地方, 主要用于播放动画
 func do_hit(delta):
@@ -85,6 +84,10 @@ func status_process(cur_status, delta):
 			do_hit(delta)
 	if cur_cd > 0:
 		cur_cd -= 1
+	if is_instance_valid(attack_target):
+		status = STATUS.ATTACK
+	else:
+		attack_target = null
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
