@@ -13,18 +13,22 @@ func _on_Trigger_firebullet(bullet_obj, position, rotation, target):
 	bu.position = position
 	bu.rotation = rotation
 	bu.velocity = bu.basic_velocity.rotated(bu.rotation)
-	# bu.target = target
-	if get_node_or_null("Target"):
-		bu.target = $Target		# 测试目标
+	bu.target = target
+#	if get_node_or_null("Target"):
+#		if is_instance_valid($Target):
+#			bu.target = $Target		# 测试目标
 	bu.connect("explode", self, "_on_explosion_effect")	# 连接爆炸信号
 	add_child(bu)
 
-# 连接所有子弹发射信号
-func connect_firebullet():
+# 子节点初始化时连接信号
+func children_connect_signal():
 	for child in get_children():
 		for group in  child.get_groups():
 			if group == "weapon_battery":
-				child.get_node("Trigger").connect("firebullet", self, "_on_Trigger_firebullet")
+				if get_node_or_null("Target"):
+					child.attack_target = $Target		# 测试目标
+				child.connect("explode", self, "_on_explosion_effect")	# 连接爆炸信号
+				child.get_node("Trigger").connect("firebullet", self, "_on_Trigger_firebullet")	# 连接所有子弹发射信号
 
 func _ready():
-	connect_firebullet()
+	children_connect_signal()

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Module/MachineGun.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Global/test_angle.gd" type="Script" id=2]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="MachineGun" parent="." instance=ExtResource( 1 )]
+position = Vector2( 448, 275 )
+rotation = 0.460767
+
+[node name="MachineGun2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 647, 375 )

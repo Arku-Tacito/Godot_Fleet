@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Module/WeaponBattery.gd" type="Script" id=1]
 [ext_resource path="res://art/ship/missileplatform.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Weapon/Missile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Effect/Explosion.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Weapon/BulletTrigger.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -10,6 +11,7 @@ extents = Vector2( 31.0217, 31.1614 )
 
 [node name="MissileBattery" type="KinematicBody2D"]
 script = ExtResource( 1 )
+effect_explosion = ExtResource( 4 )
 
 [node name="Trigger" parent="." instance=ExtResource( 5 )]
 position = Vector2( 55, 0 )

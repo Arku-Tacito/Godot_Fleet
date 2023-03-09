@@ -42,13 +42,14 @@ is_selected = true
 
 [node name="MachineGun" parent="." instance=ExtResource( 4 )]
 position = Vector2( 717, 246 )
-rotation = 1.5708
+rotation = -1.5708
 is_selected = true
 
 [node name="MachineGun2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 816, 246 )
-rotation = -1.5708
+rotation = 1.5708
 is_selected = true
 
 [node name="Target" parent="." instance=ExtResource( 4 )]
 position = Vector2( 444, 408 )
+health = 200000
