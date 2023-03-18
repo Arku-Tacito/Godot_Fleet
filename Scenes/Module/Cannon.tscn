@@ -3,21 +3,23 @@
 [ext_resource path="res://Scenes/Module/WeaponBattery.gd" type="Script" id=1]
 [ext_resource path="res://art/ship/cannon.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Weapon/Cannon_Ball.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Weapon/BulletTrigger.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Effect/Explosion.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22, 36 )
 
+[sub_resource type="CircleShape2D" id=2]
+radius = 1189.64
+
 [node name="Cannon" type="KinematicBody2D"]
 script = ExtResource( 1 )
+bullet = ExtResource( 3 )
 firing_range_rotation = 0.1
+bullet_rotation_range = 2.0
 effect_explosion = ExtResource( 5 )
 
-[node name="Trigger" parent="." instance=ExtResource( 4 )]
-position = Vector2( 58, 0 )
-bullet = ExtResource( 3 )
-rotation_offset_range = 2.0
+[node name="Trigger" type="Node2D" parent="."]
+position = Vector2( 54, 0 )
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708
@@ -25,3 +27,12 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="Detect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect"]
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="Detect" to="." method="_on_Detect_body_entered"]

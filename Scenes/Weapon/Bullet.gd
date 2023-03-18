@@ -1,17 +1,18 @@
 """子弹"""
 extends Area2D
-export var health = 20			# 基础生命
+export var health = 5			# 基础生命
 export var speed = 500		 	# 速度
 export var rotation_speed = 1.0	# 转向速度
 export var life_time = 500	 # 基础存活时间
-export var basic_damage = 5 # 基础伤害
-export var aoe_damage = 3	# 范围爆炸伤害
+export var basic_damage = 5.0 # 基础伤害
+export var aoe_damage = 3.0	# 范围爆炸伤害
 export var cross_level = 1	# 穿击等级, 撞击物体后是否继续前进
 export var is_target_locked = false	# 是否锁定目标	
 
 export (PackedScene) var effect_explosion	# 爆炸效果
 
 var target = null	# 攻击的目标
+var this_owner = null	# 所属
 var is_stop = false
 var basic_velocity = Vector2.RIGHT
 var velocity = Vector2.ZERO
@@ -40,9 +41,9 @@ func cross_level_decline():
 
 # 撞击到物体
 # 这里因为要撞击导弹, 所以也把area的检测连到这里
-func _on_body_entered(body):
+func _on_body_entered(body:Node2D):
 	match body.collision_layer:
-		1, 4, 6:	# 单位, 飞行器
+		1, 4, 6:	# 单位, 飞行器, 导弹
 			body.do_damage(basic_damage)	# 承受伤害
 			cross_level_decline()	# 撞击一次降低一次击穿等级
 

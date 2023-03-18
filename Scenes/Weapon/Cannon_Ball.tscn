@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/Weapon/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://art/ship/cannonball.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Effect/Explosion.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Effect/Bullet_Eff_Medium.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -11,8 +11,9 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource( 1 )
 speed = 700
-basic_damage = 50
-aoe_damage = 20
+life_time = 200
+basic_damage = 30.0
+aoe_damage = 20.0
 cross_level = 2
 effect_explosion = ExtResource( 3 )
 

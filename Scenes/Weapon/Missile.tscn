@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Weapon/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://art/ship/missile.png" type="Texture" id=2]
@@ -7,27 +7,36 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16.5, 7 )
 
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.657303, 1 ), 0.0, -0.0138306, 0, 0, Vector2( 1, 0.00568175 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
 [sub_resource type="ParticlesMaterial" id=2]
 flag_disable_z = true
 direction = Vector3( -1, 0, 0 )
-spread = 1.0
+spread = 3.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 250.0
-angular_velocity = 3.0
+initial_velocity = 300.0
+angular_velocity = 6.0
+angular_velocity_random = 1.0
 orbit_velocity = 0.0
-orbit_velocity_random = 0.08
-linear_accel = 1.98
+orbit_velocity_random = 0.0
+linear_accel = 5.0
 scale = 7.0
 scale_random = 0.5
+scale_curve = SubResource( 4 )
 
 [node name="Missile" type="Area2D"]
 collision_layer = 6
 collision_mask = 5
 script = ExtResource( 1 )
-speed = 300
+speed = 400
 rotation_speed = 5.0
-basic_damage = 30
-aoe_damage = 30
+life_time = 400
+basic_damage = 60.0
+aoe_damage = 20.0
 is_target_locked = true
 effect_explosion = ExtResource( 3 )
 
