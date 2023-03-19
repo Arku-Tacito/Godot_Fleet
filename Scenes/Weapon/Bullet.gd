@@ -1,9 +1,10 @@
 """子弹"""
 extends Area2D
+
 export var health = 5			# 基础生命
 export var speed = 500		 	# 速度
 export var rotation_speed = 1.0	# 转向速度
-export var life_time = 500	 # 基础存活时间
+export var life_time = 1000	 # 基础存活时间
 export var basic_damage = 5.0 # 基础伤害
 export var aoe_damage = 3.0	# 范围爆炸伤害
 export var cross_level = 1	# 穿击等级, 撞击物体后是否继续前进
@@ -49,7 +50,6 @@ func _on_body_entered(body:Node2D):
 
 func _ready():
 	add_to_group("bullet")
-	pass # Replace with function body.
 
 func _update_velocity_with_target(target_position:Vector2, delta):
 	var line_velocity = (target_position - global_position).normalized() * speed	# 朝向目标的向量, 要用global

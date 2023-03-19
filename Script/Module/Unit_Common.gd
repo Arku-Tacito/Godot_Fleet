@@ -1,8 +1,7 @@
-"""武器平台"""
+"""单位通用"""
 extends KinematicBody2D
 
 enum STATUS {IDLE, DIE, ATTACK, HIT, MOVE}	# 状态类型
-onready var random = RandomNumberGenerator.new()	# 随机数生成器
 
 """属性"""
 # 基础
@@ -13,17 +12,6 @@ export var rotation_speed = 5	# 旋转速度
 var velocity = Vector2.ZERO	# 当前速度向量
 var rotation_dir = 0	# 当前旋转角度
 var status = STATUS.IDLE	# 基础状态
-
-# 攻击
-export (PackedScene) var bullet				# 子弹
-export var firing_range_rotation = PI/2	# 可攻击范围
-export var CD = 50
-export var firing_count = 1	# 连续射击次数
-export var firing_CD = 1	# 连续射击的间隙
-export var bullet_rotation_range = 0.0 # 随机旋转范围, 正负范围
-var cur_cd = 0
-var cur_firing_cd = 0
-var cur_firing_count = 0	# 当前射击次数
 
 # 目标
 var attack_target = null	# 攻击目标
@@ -36,39 +24,20 @@ signal explode(eff_obj, position, rotation)
 
 #onready var trigger = $Trigger	# 子弹发射器
 """信号"""
-"""
-生成弹药信号
-bullet_obj 弹药类型
-position 全局位置
-rotation 全局方向, 会根据随机值偏移
-target 攻击目标, 可为空
-"""
-signal firebullet(bullet_obj, position, rotation, target, owner)
+
 
 """辅助函数"""
 # 转向敌人
-func turning_to_fire(delta):
+func turning_to_target(delta):
 	if not is_instance_valid(attack_target):
-		return false
-	var not_to_fire = false
-	var angle = self.get_angle_to(attack_target.global_position)
-	if abs(angle) > firing_range_rotation:	#在攻击角度外, 转向不射击
-		not_to_fire = true
+		return
+	#TODO: 用正确的公式计算前移量
+	var target_position = attack_target.global_position + attack_target.velocity * attack_target.speed * delta * 10
+	var angle = self.get_angle_to(target_position)
 	# 转向敌人
 	if abs(angle) > PI/2:	# 控制下面的转向不要太大
 		angle /= 3
 	global_rotation += angle * delta * rotation_speed
-	return not_to_fire
-
-# 发射
-func fire_one_bullet(delta):
-	if cur_firing_cd:
-		cur_firing_cd -= 1
-		return
-	emit_signal("firebullet", bullet, 
-					$Trigger.global_position, get_random_rotation($Trigger.global_rotation, delta), 
-					attack_target, self)# 发射信号
-	cur_firing_cd = firing_CD
 
 # 添加目标
 func add_target(target:Node2D, front:bool, immediately=false):
@@ -92,24 +61,23 @@ func add_target(target:Node2D, front:bool, immediately=false):
 		else:
 			await_target_list.append(target)
 
+# 删除目标
+func remove_target(target:Node2D):
+	if attack_target == target:
+		attack_target = null
+	if target_set.has(target):
+		target_set.erase(target)
+
 # 更新目标
 func update_target():
 	if is_instance_valid(attack_target):	# 目标是有效的
 		status = STATUS.ATTACK
-		target_set.erase(attack_target)# 集合中去掉记录
-	elif not await_target_list.empty():	# 更新下一个目标
+		return
+	target_set.erase(attack_target)# 集合中去掉记录
+	if not await_target_list.empty():	# 更新下一个目标
 		attack_target = await_target_list.pop_front()			# 目标队列第一个目标添加进来
 	else:
 		attack_target = null				# 当前无目标
-		
-# 获取随机方向
-func get_random_rotation(rotation:float, delta):
-	if !bullet_rotation_range:
-		return rotation
-	else:
-		var offset = random.randf_range(-1 * bullet_rotation_range, bullet_rotation_range)
-		rotation += offset * delta
-		return rotation
 
 """状态执行函数"""
 # 状态执行
@@ -126,16 +94,6 @@ func do_move(delta):
 	pass
 
 func do_attack(delta):
-	# 如果在转向敌人, 转完退出
-	if turning_to_fire(delta):
-		return
-	# 转向结束, 发射弹药
-	if cur_firing_count:
-		fire_one_bullet(delta)
-		cur_firing_count -= 1
-	if cur_cd == 0:
-		cur_firing_count = firing_count
-		cur_cd = CD
 	do_attack_fin()
 
 func do_attack_fin():
@@ -180,21 +138,16 @@ func status_process(cur_status, delta):
 			do_move(delta)
 		STATUS.HIT:
 			do_hit(delta)
-	if cur_cd > 0:
-		cur_cd -= 1
 	update_target()
 
 """渲染函数"""
-## Called when the node enters the scene tree for the first time.
+# 注意, 父类会被隐式调用
 func _ready():
-	add_to_group("weapon_battery")	# 将自己的节点列为武器平台分组
-	pass # Replace with function body.
-#
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	add_to_group("unit")	# 将自己的节点列为武器平台分组
+
 func _process(delta):
 	input_process()
 	status_process(status, delta)
-	pass
 
 """事件函数"""
 #检测到单位进入, 也要把area的连接进来，才能识别导弹
@@ -204,4 +157,8 @@ func _on_Detect_body_entered(body:Node2D):
 		1, 4:	# 单位, 飞行器
 			add_target(body, false)
 		6:			# 导弹优先解决
-			add_target(body, true, true)
+			add_target(body, true)
+
+# 检测到单位退出, 删除目标
+func _on_Detect_body_exited(body):
+	remove_target(body)

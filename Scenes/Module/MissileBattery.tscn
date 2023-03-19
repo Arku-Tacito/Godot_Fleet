@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scenes/Module/WeaponBattery.gd" type="Script" id=1]
+[ext_resource path="res://Script/Module/WeaponBattery.gd" type="Script" id=1]
 [ext_resource path="res://art/ship/missileplatform.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Weapon/Missile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Effect/Explosion.tscn" type="PackedScene" id=4]
@@ -9,14 +9,13 @@
 extents = Vector2( 31.0217, 31.1614 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 2902.02
+radius = 3865.27
 
 [node name="MissileBattery" type="KinematicBody2D"]
 script = ExtResource( 1 )
+effect_explosion = ExtResource( 4 )
 bullet = ExtResource( 3 )
 CD = 100
-bullet_rotation_range = 1.0
-effect_explosion = ExtResource( 4 )
 
 [node name="Trigger" type="Node2D" parent="."]
 position = Vector2( 56, 0 )
@@ -38,3 +37,4 @@ collision_mask = 5
 shape = SubResource( 2 )
 
 [connection signal="body_entered" from="Detect" to="." method="_on_Detect_body_entered"]
+[connection signal="body_exited" from="Detect" to="." method="_on_Detect_body_exited"]

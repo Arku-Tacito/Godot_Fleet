@@ -12,7 +12,7 @@ func _on_Trigger_firebullet(bullet_obj, position, rotation, target, owner):
 	var bu = bullet_obj.instance()
 	bu.position = position
 	bu.rotation = rotation
-	bu.velocity = bu.basic_velocity.rotated(bu.rotation)
+	bu.velocity = bu.basic_velocity.rotated(rotation)
 	bu.target = target
 	bu.this_owner = owner
 	bu.connect("explode", self, "_on_explosion_effect")	# 连接爆炸信号

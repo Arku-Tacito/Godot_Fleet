@@ -11,7 +11,6 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource( 1 )
 speed = 700
-life_time = 200
 basic_damage = 30.0
 aoe_damage = 20.0
 cross_level = 2
