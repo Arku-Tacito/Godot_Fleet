@@ -8,9 +8,9 @@
 
 [node name="CaonnonBall" type="Area2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 29
 script = ExtResource( 1 )
-speed = 700
+speed = 800
 basic_damage = 30.0
 aoe_damage = 20.0
 cross_level = 2

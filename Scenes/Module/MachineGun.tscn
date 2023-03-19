@@ -5,13 +5,15 @@
 [ext_resource path="res://Scenes/Weapon/MGun_Bullet.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Effect/Explosion.tscn" type="PackedScene" id=4]
 
+[sub_resource type="CircleShape2D" id=2]
+radius = 1685.06
+
 [sub_resource type="CircleShape2D" id=1]
 radius = 27.074
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 1191.07
-
 [node name="MachineGun" type="KinematicBody2D"]
+collision_layer = 16
+collision_mask = 0
 script = ExtResource( 1 )
 effect_explosion = ExtResource( 4 )
 bullet = ExtResource( 3 )
@@ -20,22 +22,22 @@ CD = 80
 firing_count = 30
 firing_accuracy = 0.7
 
+[node name="Detect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 21
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect"]
+shape = SubResource( 2 )
+
 [node name="Trigger" type="Node2D" parent="."]
 position = Vector2( 43, 0 )
-
-[node name="Sprite" type="Sprite" parent="."]
-rotation = 1.5708
-texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Detect" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect"]
-shape = SubResource( 2 )
+[node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
+texture = ExtResource( 2 )
 
 [connection signal="area_entered" from="Detect" to="." method="_on_Detect_body_entered"]
 [connection signal="area_exited" from="Detect" to="." method="_on_Detect_body_exited"]

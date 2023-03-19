@@ -30,9 +30,8 @@ scale_curve = SubResource( 4 )
 
 [node name="Missile" type="Area2D"]
 collision_layer = 6
-collision_mask = 5
+collision_mask = 29
 script = ExtResource( 1 )
-speed = 400
 rotation_speed = 5.0
 basic_damage = 60.0
 aoe_damage = 20.0

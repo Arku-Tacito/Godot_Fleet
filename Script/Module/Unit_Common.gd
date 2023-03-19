@@ -9,9 +9,13 @@ export var is_selected = false	# 是否被选中
 export var health = 200		# 血量
 export var speed = 0		# 移动速度
 export var rotation_speed = 5	# 旋转速度
+export var faction = 0			# 阵营
 var velocity = Vector2.ZERO	# 当前速度向量
 var rotation_dir = 0	# 当前旋转角度
 var status = STATUS.IDLE	# 基础状态
+
+# 攻击
+export var firing_range_distance = 1000
 
 # 目标
 var attack_target = null	# 攻击目标
@@ -27,22 +31,26 @@ signal explode(eff_obj, position, rotation)
 
 
 """辅助函数"""
-# 转向敌人
-func turning_to_target(delta):
-	if not is_instance_valid(attack_target):
+# 往目标方向前进
+func update_velocity_with_target(target_position:Vector2, delta):
+	# 在攻击范围内, 不移动
+	if (target_position - global_position).length() <= firing_range_distance:
+		velocity = Vector2.ZERO
 		return
-	#TODO: 用正确的公式计算前移量
-	var target_position = attack_target.global_position + attack_target.velocity * attack_target.speed * delta * 10
-	var angle = self.get_angle_to(target_position)
-	# 转向敌人
-	if abs(angle) > PI/2:	# 控制下面的转向不要太大
-		angle /= 3
-	global_rotation += angle * delta * rotation_speed
+	var line_velocity = (target_position - global_position).normalized() * speed	# 朝向目标的向量, 要用global
+	var acceleration_velocity = (line_velocity - velocity).normalized() * rotation_speed	# 转向加速度
+	velocity += acceleration_velocity * delta	# 更新速度
+	velocity = velocity.normalized()			# 限制速率不会超过本身最大速率
+	global_rotation = velocity.angle()			# 朝向跟着速度走
+
+# 判断是否是友好正营, 当前直接判断相等
+func _if_target_friendly(target_faction):
+	return faction == target_faction
 
 # 添加目标
 func add_target(target:Node2D, front:bool, immediately=false):
-	# 自己就不要算进去啦
-	if target == self:
+	# 盟友和自己就不要算进去啦
+	if target == self or _if_target_friendly(target.faction):
 		return
 	# 去重
 	if target_set.has(target):
@@ -91,12 +99,18 @@ func do_idle(delta):
 		return
 
 func do_move(delta):
+	if velocity == Vector2.ZERO:
+		status == STATUS.IDLE
 	pass
 
 func do_attack(delta):
-	do_attack_fin()
+	if is_instance_valid(attack_target):
+		update_velocity_with_target(attack_target.global_position, delta)
+	else:
+		do_attack_fin()
 
 func do_attack_fin():
+	velocity = Vector2.ZERO
 	status = STATUS.IDLE
 
 # 计算伤害
@@ -144,19 +158,22 @@ func status_process(cur_status, delta):
 # 注意, 父类会被隐式调用
 func _ready():
 	add_to_group("unit")	# 将自己的节点列为武器平台分组
+	for child in get_children():
+		if "unit" in child.get_groups():
+			child.faction = faction
 
 func _process(delta):
 	input_process()
 	status_process(status, delta)
+	#global_position += velocity * speed * delta
+	move_and_slide(velocity * speed)
 
 """事件函数"""
 #检测到单位进入, 也要把area的连接进来，才能识别导弹
 func _on_Detect_body_entered(body:Node2D):
 	# 检查类型
 	match body.collision_layer:
-		1, 4:	# 单位, 飞行器
-			add_target(body, false)
-		6:			# 导弹优先解决
+		1, 4, 6, 16:	# 船, 飞行器, 导弹, 模块
 			add_target(body, true)
 
 # 检测到单位退出, 删除目标
