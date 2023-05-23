@@ -8,6 +8,64 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "BulletBase",
+"language": "GDScript",
+"path": "res://Script/Bullet/BulletBase.gd"
+}, {
+"base": "Node",
+"class": "CombatManager",
+"language": "GDScript",
+"path": "res://Script/Common/CombatManager.gd"
+}, {
+"base": "Node2D",
+"class": "ExplosionBase",
+"language": "GDScript",
+"path": "res://Script/Effect/ExplosionBase.gd"
+}, {
+"base": "Reference",
+"class": "FactionInf",
+"language": "GDScript",
+"path": "res://Script/Common/FactionInf.gd"
+}, {
+"base": "BulletBase",
+"class": "MissileBase",
+"language": "GDScript",
+"path": "res://Script/Bullet/MissileBase.gd"
+}, {
+"base": "Resource",
+"class": "MoveInf",
+"language": "GDScript",
+"path": "res://Script/Common/MoveInf.gd"
+}, {
+"base": "Resource",
+"class": "TargetManager",
+"language": "GDScript",
+"path": "res://Script/Common/TargetManager.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "UnitBase",
+"language": "GDScript",
+"path": "res://Script/Unit/UnitBase.gd"
+}, {
+"base": "UnitBase",
+"class": "WeaponBattery",
+"language": "GDScript",
+"path": "res://Script/Unit/WeaponBattery.gd"
+} ]
+_global_script_class_icons={
+"BulletBase": "",
+"CombatManager": "",
+"ExplosionBase": "",
+"FactionInf": "",
+"MissileBase": "",
+"MoveInf": "",
+"TargetManager": "",
+"UnitBase": "",
+"WeaponBattery": ""
+}
+
 [application]
 
 config/name="Fleet"

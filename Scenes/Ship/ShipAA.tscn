@@ -3,7 +3,7 @@
 [ext_resource path="res://art/ship/ship_struction.png" type="Texture" id=1]
 [ext_resource path="res://art/ship/ship_struction_end.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Effect/Explosion.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Script/Module/Unit_Common.gd" type="Script" id=4]
+[ext_resource path="res://Script/Unit/UnitBase.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Module/MachineGun.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Module/Cannon.tscn" type="PackedScene" id=6]
 
@@ -17,10 +17,10 @@ extents = Vector2( 262.5, 102.5 )
 position = Vector2( 0, -2 )
 collision_mask = 9
 script = ExtResource( 4 )
-health = 700
-speed = 200
-rotation_speed = 100
-firing_range_distance = 2500
+health = 700.0
+speed = 200.0
+rotation_speed = 100.0
+attack_range = 2500.0
 effect_explosion = ExtResource( 3 )
 
 [node name="Detect" type="Area2D" parent="."]
@@ -36,8 +36,7 @@ shape = SubResource( 2 )
 
 [node name="Cannon" parent="." instance=ExtResource( 6 )]
 position = Vector2( -192, 0 )
-speed = 100
-rotation_speed = 10
+rotation_speed = 0.0
 
 [node name="MachineGun2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 0, 120 )
@@ -47,6 +46,7 @@ position = Vector2( 0, -110 )
 
 [node name="MachineGun3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 180, 1 )
+attack_range = 1000.0
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 168.375, 0.387863 )

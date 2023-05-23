@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/Global/test_demo.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Unit/ShipMissile.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Unit/ShipAA.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Unit/ShipCannon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Script/Common/CombatManager.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Ship/ShipMissile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Ship/ShipAA.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Ship/ShipCannon.tscn" type="PackedScene" id=4]
 
 [node name="RootNode" type="Node2D"]
 script = ExtResource( 1 )

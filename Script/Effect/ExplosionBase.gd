@@ -1,4 +1,5 @@
-extends Node2D
+"""爆炸类"""
+class_name ExplosionBase extends Node2D
 
 func _ready():
 	$Particles2D.one_shot = true
