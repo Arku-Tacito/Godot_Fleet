@@ -24,6 +24,7 @@ attack_range = 2500.0
 effect_explosion = ExtResource( 3 )
 
 [node name="Detect" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 9
 
@@ -35,8 +36,7 @@ position = Vector2( -15.5, 1 )
 shape = SubResource( 2 )
 
 [node name="Cannon" parent="." instance=ExtResource( 6 )]
-position = Vector2( -192, 0 )
-rotation_speed = 0.0
+position = Vector2( -176, 0 )
 
 [node name="MachineGun2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 0, 120 )

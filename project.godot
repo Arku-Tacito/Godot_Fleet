@@ -14,10 +14,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Bullet/BulletBase.gd"
 }, {
-"base": "Node",
+"base": "Camera2D",
+"class": "CameraBase",
+"language": "GDScript",
+"path": "res://Script/Camera/CameraBase.gd"
+}, {
+"base": "Node2D",
 "class": "CombatManager",
 "language": "GDScript",
-"path": "res://Script/Common/CombatManager.gd"
+"path": "res://Script/Scene/CombatManager.gd"
 }, {
 "base": "Node2D",
 "class": "ExplosionBase",
@@ -56,6 +61,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BulletBase": "",
+"CameraBase": "",
 "CombatManager": "",
 "ExplosionBase": "",
 "FactionInf": "",

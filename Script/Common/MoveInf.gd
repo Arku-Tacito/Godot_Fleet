@@ -31,7 +31,7 @@ func linear_trajectory(src_pos:Vector2, src_speed:float, dst_vel:Vector2, dst_po
 	
 	# 求根公式无解, 直接返回目标位置
 	if this_delta < 0:
-		print_debug("this_delta < 0")
+		# print_debug("this_delta < 0")
 		return dst_pos
 	
 	# 解方程, F为碰撞时, 目标的位移

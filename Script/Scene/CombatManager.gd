@@ -1,5 +1,5 @@
 """战场管理"""
-class_name CombatManager extends Node
+class_name CombatManager extends Node2D
 
 # 处理爆炸信号
 func _on_explosion_effect(eff_obj, position, rotation):
@@ -25,10 +25,12 @@ func _deal_with_unit(unit):
 			_deal_with_unit(child)
 
 # 子节点初始化时连接信号
-func children_connect_signal():
-	for child in get_children():
+func children_connect_signal(root):
+	for child in root.get_children():
 		if "unit" in  child.get_groups():
 			_deal_with_unit(child)
+		else:
+			children_connect_signal(child)
 
 func _ready():
-	children_connect_signal()
+	children_connect_signal(self)
