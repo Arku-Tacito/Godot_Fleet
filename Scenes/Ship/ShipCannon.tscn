@@ -18,7 +18,7 @@ collision_mask = 9
 script = ExtResource( 4 )
 health = 500.0
 speed = 100.0
-rotation_speed = 10.0
+rotation_speed = 2.0
 attack_range = 1800.0
 effect_explosion = ExtResource( 3 )
 

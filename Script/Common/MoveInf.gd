@@ -45,6 +45,17 @@ func linear_trajectory(src_pos:Vector2, src_speed:float, dst_vel:Vector2, dst_po
 	var impact_point = dst_pos + F * dst_vel.normalized()
 	return impact_point
 
+# 转向目标位置
+# 返回角度绝对值
+func turn_to_position(src_unit, dst_position:Vector2, rotation_speed:float, delta:float):
+	var	angle = src_unit.get_angle_to(dst_position)
+	var angle_delta = angle
+	# 转向敌人
+	if abs(angle) > PI/2:	# 控制下面的转向不要太大
+		angle_delta = angle / 3
+	src_unit.global_rotation += angle_delta * delta * rotation_speed
+	return abs(angle)
+
 # 瞄准目标, 考虑直线弹道
 # 这里的目标要么是单位, 要么是可攻击的子弹
 # 返回角度绝对值
@@ -53,10 +64,5 @@ func aim_at_target(src_unit, src_speed:float, attack_target, delta:float):
 	var collision_pos = linear_trajectory(src_unit.global_position, src_speed,
 													attack_target.velocity * attack_target.speed,
 													attack_target.global_position)
-	var	angle = src_unit.get_angle_to(collision_pos)
-	var angle_delta = angle
-	# 转向敌人
-	if abs(angle) > PI/2:	# 控制下面的转向不要太大
-		angle_delta = angle / 3
-	src_unit.global_rotation += angle_delta * delta * src_unit.rotation_speed
-	return abs(angle)
+	return turn_to_position(src_unit, collision_pos, src_unit.rotation_speed, delta)
+

@@ -31,28 +31,28 @@ format = 1
 [node name="Units" type="Node2D" parent="."]
 
 [node name="Ship9" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( -1394, 9 )
+position = Vector2( -1441, -18 )
 
 [node name="Ship13" parent="Units" instance=ExtResource( 2 )]
-position = Vector2( -3262, 864 )
+position = Vector2( -3290, 280 )
 
 [node name="Ship14" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( -3245, -602 )
+position = Vector2( -3273, -1186 )
 
 [node name="Ship15" parent="Units" instance=ExtResource( 4 )]
-position = Vector2( -3268, 28 )
+position = Vector2( -3296, -556 )
 
 [node name="Ship16" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( -3183, 1751 )
+position = Vector2( -3211, 1167 )
 
 [node name="Ship10" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( -1348, -802 )
+position = Vector2( -1395, -829 )
 
 [node name="Ship11" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( -1328, 1353 )
+position = Vector2( -1375, 1326 )
 
 [node name="Ship12" parent="Units" instance=ExtResource( 2 )]
-position = Vector2( -1394, 611 )
+position = Vector2( -1441, 584 )
 
 [node name="Ship" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 4331, -283 )

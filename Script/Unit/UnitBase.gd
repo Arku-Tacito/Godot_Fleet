@@ -3,7 +3,6 @@ class_name UnitBase extends KinematicBody2D
 
 """常量与枚举定义"""
 enum STATUS {IDLE, DIE, ATTACK, HIT, MOVE}	# 状态类型
-const FACTION_UNKNOWN = -1					# 未知阵营
 
 """外部属性"""
 # 基础
@@ -14,7 +13,7 @@ export var attack_range:float = 0			# 攻击距离
 export var attack_angle:float = PI/2		# 攻击角度
 
 # 控制
-export var faction:int = FACTION_UNKNOWN	# 阵营
+export var faction:int = GlobalValue.FACTION_UNKNOWN	# 阵营
 export var is_selected:bool = false			# 是否被选中
 
 """内部属性"""
@@ -114,7 +113,9 @@ func process_die(delta):
 	
 # 所有状态都会走的逻辑
 func process_all(delta):
-	move_and_slide(velocity)
+	if velocity != Vector2.ZERO:
+		move_inf.turn_to_position(self, global_position + velocity * delta, self.rotation_speed, delta)	# 转向速度方向
+		move_and_slide(velocity)
 
 """状态转换函数"""
 # 处理输入
@@ -160,8 +161,10 @@ func _on_Detect_body_entered(body):
 	if faction_inf.is_friendly(faction, body.faction):
 		return
 	# 检查类型
+	var layer_missle = (GlobalValue.LAYER_BULLET | GlobalValue.LAYER_CRAFT)
 	match body.collision_layer:
-		1, 4, 6, 16:	# 船, 飞行器, 导弹, 模块
+		GlobalValue.LAYER_SHIP, GlobalValue.LAYER_CRAFT, \
+		GlobalValue.LAYER_MISSILE, GlobalValue.LAYER_MODULE:	# 船, 飞行器, 导弹, 模块
 			target_manager.add_target(body, true)
 
 # 检测到单位退出, 删除目标

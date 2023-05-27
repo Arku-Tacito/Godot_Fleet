@@ -2,7 +2,6 @@
 class_name BulletBase extends Area2D 
 
 """常量与枚举定义"""
-const FACTION_UNKNOWN = -1					# 未知阵营
 
 """外部属性"""
 export var speed:float = 500		 		# 速度
@@ -14,9 +13,9 @@ export var cross_level:int = 1				# 穿击等级, 撞击物体后是否继续前
 export var is_target_locked = false			# 是否锁定目标	
 
 """内部属性"""
-var faction:int = FACTION_UNKNOWN	# 阵营
-var target = null					# 攻击的目标
-var myowner:UnitBase = null			# 所属
+var faction:int = GlobalValue.FACTION_UNKNOWN	# 阵营
+var target = null								# 攻击的目标
+var myowner:UnitBase = null						# 所属
 var is_stop:bool = false
 var basic_velocity:Vector2 = Vector2.RIGHT
 var velocity:Vector2 = Vector2.ZERO
@@ -77,6 +76,7 @@ func _on_body_entered(body):
 		if faction_inf.is_friendly(faction, body.faction):
 			return
 	match body.collision_layer:
-		1, 4, 6, 16:	# 船, 飞行器, 导弹, 模块
+		GlobalValue.LAYER_SHIP, GlobalValue.LAYER_CRAFT, \
+		GlobalValue.LAYER_MISSILE, GlobalValue.LAYER_MODULE:	# 船, 飞行器, 导弹, 模块
 			body.take_damage(myowner,basic_damage)	# 承受伤害
 			cross_level_decline()	# 撞击一次降低一次击穿等级

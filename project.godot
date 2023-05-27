@@ -77,6 +77,10 @@ _global_script_class_icons={
 config/name="Fleet"
 config/icon="res://icon.png"
 
+[autoload]
+
+GlobalValue="*res://Script/Global/GlobalValue.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

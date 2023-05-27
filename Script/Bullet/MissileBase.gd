@@ -2,7 +2,7 @@
 class_name MissileBase extends BulletBase
 
 """外部属性"""
-export var health:float = 40				# 血量
+export var health:float = 30				# 血量
 
 """内部属性"""
 # 外部接口
