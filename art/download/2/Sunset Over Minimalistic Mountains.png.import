@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pngwing.com (5).png-1b7795d7725fc207ad75e552703676f2.stex"
+path="res://.import/Sunset Over Minimalistic Mountains.png-07e721b9cb651f1ecb167b79d0a46d46.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/download/pngwing.com (5).png"
-dest_files=[ "res://.import/pngwing.com (5).png-1b7795d7725fc207ad75e552703676f2.stex" ]
+source_file="res://art/download/2/Sunset Over Minimalistic Mountains.png"
+dest_files=[ "res://.import/Sunset Over Minimalistic Mountains.png-07e721b9cb651f1ecb167b79d0a46d46.stex" ]
 
 [params]
 

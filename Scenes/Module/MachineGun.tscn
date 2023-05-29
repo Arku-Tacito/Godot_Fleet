@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Script/Unit/WeaponBattery.gd" type="Script" id=1]
-[ext_resource path="res://art/ship/machinegun.png" type="Texture" id=2]
+[ext_resource path="res://art/download/2/mcgun_battery.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Weapon/MGun_Bullet.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Effect/Explosion.tscn" type="PackedScene" id=4]
 
@@ -39,7 +39,8 @@ position = Vector2( 43, 0 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-rotation = 1.5708
+position = Vector2( -7, 0 )
+scale = Vector2( 1.106, 1.106 )
 texture = ExtResource( 2 )
 
 [connection signal="area_entered" from="Detect" to="." method="_on_Detect_body_entered"]

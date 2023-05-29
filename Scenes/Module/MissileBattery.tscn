@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Script/Unit/WeaponBattery.gd" type="Script" id=1]
-[ext_resource path="res://art/ship/missileplatform.png" type="Texture" id=2]
+[ext_resource path="res://art/download/2/missile_battery.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Weapon/Missile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Effect/Explosion.tscn" type="PackedScene" id=4]
 
@@ -37,7 +37,8 @@ rotation = 0.771778
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-rotation = 1.5708
+position = Vector2( -13, -1.19209e-07 )
+scale = Vector2( 1.354, 1.31 )
 texture = ExtResource( 2 )
 
 [connection signal="body_entered" from="Detect" to="." method="_on_Detect_body_entered"]

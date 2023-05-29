@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Script/Unit/WeaponBattery.gd" type="Script" id=1]
-[ext_resource path="res://art/ship/cannon.png" type="Texture" id=2]
+[ext_resource path="res://art/download/2/cannon_battery.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Weapon/Cannon_Ball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Effect/Explosion.tscn" type="PackedScene" id=5]
 
@@ -9,7 +9,7 @@
 radius = 2005.0
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 22, 36 )
+extents = Vector2( 27.5, 31 )
 
 [node name="Cannon" type="KinematicBody2D"]
 collision_layer = 16
@@ -33,10 +33,11 @@ shape = SubResource( 2 )
 position = Vector2( 54, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 0 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-rotation = 1.5708
+scale = Vector2( 1.23, 1.651 )
 texture = ExtResource( 2 )
 
 [connection signal="body_entered" from="Detect" to="." method="_on_Detect_body_entered"]

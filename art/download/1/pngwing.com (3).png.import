@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spaceship1.png-c0c9b562d95a7f8a2f41faf37f674f69.stex"
+path="res://.import/pngwing.com (3).png-fd494e2ca0b8c3b81520434a46aa9fc0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/download/spaceship1.png"
-dest_files=[ "res://.import/spaceship1.png-c0c9b562d95a7f8a2f41faf37f674f69.stex" ]
+source_file="res://art/download/1/pngwing.com (3).png"
+dest_files=[ "res://.import/pngwing.com (3).png-fd494e2ca0b8c3b81520434a46aa9fc0.stex" ]
 
 [params]
 

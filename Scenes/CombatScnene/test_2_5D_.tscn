@@ -1,15 +1,14 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Script/Scene/CombatManager.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Ship/ShipAA.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Ship/ShipMissile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Ship/ShipCannon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Script/Camera/CameraBase.gd" type="Script" id=5]
-[ext_resource path="res://art/download/pngwing.com (9).png" type="Texture" id=6]
-[ext_resource path="res://art/download/pngwing.com (3).png" type="Texture" id=7]
-[ext_resource path="res://art/download/pngwing.com (5).png" type="Texture" id=8]
-[ext_resource path="res://art/download/pngwing.com (4).png" type="Texture" id=9]
-[ext_resource path="res://art/download/pngwing.com (7).png" type="Texture" id=10]
+[ext_resource path="res://art/download/2/Sunset Over Minimalistic Mountains.png" type="Texture" id=6]
+[ext_resource path="res://art/download/2/bg_line2.png" type="Texture" id=7]
+[ext_resource path="res://art/download/2/bg_line3.png" type="Texture" id=8]
+[ext_resource path="res://art/download/2/bg_line1.png" type="Texture" id=9]
 
 [sub_resource type="TileSet" id=1]
 
@@ -97,87 +96,56 @@ faction = 1
 [node name="GoundView" type="Node2D" parent="."]
 
 [node name="BackGroud" type="CanvasLayer" parent="GoundView"]
+layer = -3
+
+[node name="SunsetOverMinimalisticMountains" type="Sprite" parent="GoundView/BackGroud"]
+position = Vector2( 994, 193 )
+scale = Vector2( 12.8833, 7.31852 )
+texture = ExtResource( 6 )
 
 [node name="Ground-1" type="CanvasLayer" parent="GoundView"]
 layer = -1
 follow_viewport_enable = true
 follow_viewport_scale = 0.9
 
-[node name="Pngwingcom(5)" type="Sprite" parent="GoundView/Ground-1"]
-position = Vector2( -2498, 1940 )
-scale = Vector2( 1.45272, 1.19584 )
-texture = ExtResource( 8 )
-
-[node name="Pngwingcom(4)" type="Sprite" parent="GoundView/Ground-1"]
-position = Vector2( 3160.5, 1577.38 )
-scale = Vector2( 2.83638, 3.09257 )
-texture = ExtResource( 9 )
-
-[node name="Pngwingcom(4)2" type="Sprite" parent="GoundView/Ground-1"]
-position = Vector2( -135, 1335 )
-scale = Vector2( 2.11535, 4.56341 )
-texture = ExtResource( 9 )
-flip_h = true
-
-[node name="Pngwingcom(5)2" type="Sprite" parent="GoundView/Ground-1"]
-position = Vector2( 5521, 1854 )
-scale = Vector2( 1.61362, 1.20289 )
-texture = ExtResource( 8 )
-flip_h = true
+[node name="BgLine2" type="Sprite" parent="GoundView/Ground-1"]
+position = Vector2( 984, 444 )
+scale = Vector2( 12.344, 6.104 )
+texture = ExtResource( 7 )
 
 [node name="Ground0" type="CanvasLayer" parent="GoundView"]
 follow_viewport_enable = true
 
-[node name="Pngwingcom(9)" type="Sprite" parent="GoundView/Ground0"]
-position = Vector2( 5924, 2037.5 )
-texture = ExtResource( 6 )
+[node name="BgLine3" type="Sprite" parent="GoundView/Ground0"]
+position = Vector2( -3789, 1157 )
+scale = Vector2( 2.796, 3.12 )
+texture = ExtResource( 8 )
 
-[node name="Pngwingcom(9)2" type="Sprite" parent="GoundView/Ground0"]
-position = Vector2( 4132, 2029.5 )
-texture = ExtResource( 6 )
-flip_h = true
+[node name="BgLine4" type="Sprite" parent="GoundView/Ground0"]
+position = Vector2( 5457.7, 1164.65 )
+scale = Vector2( 3.5334, 3.1386 )
+texture = ExtResource( 8 )
 
-[node name="Pngwingcom(9)3" type="Sprite" parent="GoundView/Ground0"]
-position = Vector2( 1980, 2021.5 )
-texture = ExtResource( 6 )
-
-[node name="Pngwingcom(9)4" type="Sprite" parent="GoundView/Ground0"]
-position = Vector2( 1028, 2029.5 )
-texture = ExtResource( 6 )
-
-[node name="Pngwingcom(9)5" type="Sprite" parent="GoundView/Ground0"]
-position = Vector2( 852.5, 2038 )
-texture = ExtResource( 6 )
-
-[node name="Pngwingcom(9)6" type="Sprite" parent="GoundView/Ground0"]
-position = Vector2( -939.5, 2030 )
-texture = ExtResource( 6 )
-flip_h = true
-
-[node name="Pngwingcom(9)7" type="Sprite" parent="GoundView/Ground0"]
-position = Vector2( -3091.5, 2022 )
-texture = ExtResource( 6 )
-
-[node name="Pngwingcom(9)8" type="Sprite" parent="GoundView/Ground0"]
-position = Vector2( -4043.5, 2030 )
-texture = ExtResource( 6 )
+[node name="BgLine1" type="Sprite" parent="GoundView/Ground0"]
+position = Vector2( 797, 1346 )
+scale = Vector2( 6.3935, 2.538 )
+texture = ExtResource( 9 )
 
 [node name="Ground1" type="CanvasLayer" parent="GoundView"]
 follow_viewport_enable = true
 follow_viewport_scale = 1.1
 
-[node name="Pngwingcom(7)" type="Sprite" parent="GoundView/Ground1"]
-position = Vector2( -1584, 1581 )
-scale = Vector2( 1.29333, 2.0575 )
-texture = ExtResource( 10 )
+[node name="BgLine1" type="Sprite" parent="GoundView/Ground1"]
+position = Vector2( -1664.5, 1490.5 )
+scale = Vector2( 7.087, 2.602 )
+texture = ExtResource( 9 )
 
-[node name="Pngwingcom(7)2" type="Sprite" parent="GoundView/Ground1"]
-position = Vector2( 4745, 1572 )
-scale = Vector2( 1.31815, 2.12375 )
-texture = ExtResource( 10 )
-flip_h = true
+[node name="BgLine2" type="Sprite" parent="GoundView/Ground1"]
+position = Vector2( 8212, 1291 )
+scale = Vector2( 12.7433, 3.43219 )
+texture = ExtResource( 9 )
 
-[node name="Pngwingcom(3)" type="Sprite" parent="GoundView/Ground1"]
-position = Vector2( 1631, 1502 )
-scale = Vector2( 2.37917, 3.93289 )
-texture = ExtResource( 7 )
+[node name="BgLine3" type="Sprite" parent="GoundView/Ground1"]
+position = Vector2( 1062, 1634 )
+scale = Vector2( 3.325, 2.028 )
+texture = ExtResource( 8 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pngwing.com (7).png-f43802b37337c44bad647d7a28c05c4c.stex"
+path="res://.import/bg_line1.png-4c17a56a9058df3a29a440507591b0fa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/download/pngwing.com (7).png"
-dest_files=[ "res://.import/pngwing.com (7).png-f43802b37337c44bad647d7a28c05c4c.stex" ]
+source_file="res://art/download/2/bg_line1.png"
+dest_files=[ "res://.import/bg_line1.png-4c17a56a9058df3a29a440507591b0fa.stex" ]
 
 [params]
 

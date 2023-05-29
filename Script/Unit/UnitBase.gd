@@ -114,7 +114,7 @@ func process_die(delta):
 # 所有状态都会走的逻辑
 func process_all(delta):
 	if velocity != Vector2.ZERO:
-		move_inf.turn_to_position(self, global_position + velocity * delta, self.rotation_speed, delta)	# 转向速度方向
+		#move_inf.turn_to_position(self, global_position + velocity * delta, self.rotation_speed, delta)	# 转向速度方向
 		move_and_slide(velocity)
 
 """状态转换函数"""
