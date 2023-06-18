@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Bullet/MissileBase.gd"
 }, {
+"base": "StaticBody2D",
+"class": "ModuleBase",
+"language": "GDScript",
+"path": "res://Script/Module/ModuleBase.gd"
+}, {
 "base": "Resource",
 "class": "MoveInf",
 "language": "GDScript",
@@ -54,10 +59,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Script/Unit/UnitBase.gd"
 }, {
-"base": "UnitBase",
+"base": "ModuleBase",
 "class": "WeaponBattery",
 "language": "GDScript",
-"path": "res://Script/Unit/WeaponBattery.gd"
+"path": "res://Script/Module/WeaponBattery.gd"
 } ]
 _global_script_class_icons={
 "BulletBase": "",
@@ -66,6 +71,7 @@ _global_script_class_icons={
 "ExplosionBase": "",
 "FactionInf": "",
 "MissileBase": "",
+"ModuleBase": "",
 "MoveInf": "",
 "TargetManager": "",
 "UnitBase": "",
@@ -104,12 +110,12 @@ MoveDown={
 }
 Right={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 Left={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

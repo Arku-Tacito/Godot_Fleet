@@ -8,8 +8,8 @@ export var translate_speed:float = 0.1		# 平移速度
 export var zoom_lerp:int = 8				# 缩放平滑度
 
 # 相机缩放限制
-var zoom_min:float = 2
-var zoom_max:float = 10
+export var zoom_min:float = 2
+export var zoom_max:float = 10
 
 var cur_zoom:Vector2 = zoom					# 当前的缩放
 
@@ -33,14 +33,22 @@ func set_zoom_limit(new_zoom_min:float, new_zoom_max:float):
 """辅助函数"""
 # 缩放
 func do_zoom(is_zoom_up:bool):
-	if is_zoom_up:
+	if is_zoom_up:	# 镜头缩小
 		if zoom.x < zoom_max:
 			cur_zoom.x += zoom_speed
 			cur_zoom.y += zoom_speed
-	else:
+		if cur_zoom.x > zoom_max:
+			cur_zoom.x = zoom_max
+		if cur_zoom.y > zoom_max:
+			cur_zoom.y = zoom_max
+	else:	# 镜头放大
 		if zoom.x > zoom_min:
 			cur_zoom.x -= zoom_speed
 			cur_zoom.y -= zoom_speed
+		if cur_zoom.x < zoom_min:
+			cur_zoom.x = zoom_min
+		if cur_zoom.y < zoom_min:
+			cur_zoom.y = zoom_min
 	# 不让相机平移
 	is_drag = false
 	
@@ -87,7 +95,9 @@ func _input(event):
 				do_zoom(event.button_index == BUTTON_WHEEL_DOWN)	# 往上拉放大
 			BUTTON_MIDDLE:						# 中键拖动
 				do_drag(event.is_pressed(), event.position)
-	update_dragging(event.position)
+	# 更新拖动的位置
+	if event is InputEventMouseButton or event is InputEventMouseMotion:
+		update_dragging(event.position)
 
 func _process(delta):
 	# 缩放平滑刷新

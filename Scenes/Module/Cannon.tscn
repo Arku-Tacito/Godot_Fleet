@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Script/Unit/WeaponBattery.gd" type="Script" id=1]
+[ext_resource path="res://Script/Module/WeaponBattery.gd" type="Script" id=1]
 [ext_resource path="res://art/download/2/cannon_battery.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Weapon/Cannon_Ball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Effect/Explosion.tscn" type="PackedScene" id=5]
@@ -8,18 +8,15 @@
 [sub_resource type="CircleShape2D" id=2]
 radius = 2005.0
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 27.5, 31 )
-
-[node name="Cannon" type="KinematicBody2D"]
+[node name="Cannon" type="StaticBody2D"]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource( 1 )
-rotation_speed = 5.0
-attack_angle = 0.1
 effect_explosion = ExtResource( 5 )
 bullet = ExtResource( 3 )
 firing_accuracy = 0.8
+rotation_speed = 5.0
+attack_angle = 0.1
 
 [node name="Detect" type="Area2D" parent="."]
 visible = false
@@ -32,9 +29,9 @@ shape = SubResource( 2 )
 [node name="Trigger" type="Node2D" parent="."]
 position = Vector2( 54, 0 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0.5, 0 )
-shape = SubResource( 1 )
+polygon = PoolVector2Array( 5.5, -33, -26.5, -33, -26.5, 32, 7.5, 33, 34.5, 13, 84.5, 13, 84.5, -13, 32.5, -13 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1.23, 1.651 )

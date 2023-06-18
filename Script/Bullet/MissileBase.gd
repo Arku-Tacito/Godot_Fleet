@@ -3,6 +3,7 @@ class_name MissileBase extends BulletBase
 
 """外部属性"""
 export var health:float = 30				# 血量
+export var is_target_locked = true			# 是否锁定目标	
 
 """内部属性"""
 # 外部接口
@@ -32,7 +33,7 @@ func update_movement(delta):
 											0
 		)
 		velocity = velocity_nor * speed
-
+	# 移动
 	target_manager.update_target()
 	global_rotation = velocity.angle()	# 转向
 	global_position += velocity * delta

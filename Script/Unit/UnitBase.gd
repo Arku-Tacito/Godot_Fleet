@@ -34,6 +34,8 @@ var faction_inf:FactionInf = FactionInf.new()			# 阵营操作接口
 export (PackedScene) var effect_explosion	# 爆炸效果
 signal explode(eff_obj, position, rotation)	# 爆炸信号
 
+var is_flip:bool = false	# 翻转
+
 """接口函数"""
 # 判断是否已经死亡
 func is_dead():
@@ -111,9 +113,21 @@ func process_die(delta):
 		emit_signal("explode", effect_explosion, global_position, global_rotation)
 	queue_free()
 	
+func do_flip():
+	var nodes = get_children()
+	for node in nodes:
+		node.position.x = -1 * node.position.x
+		if node is Sprite:
+			node.set_flip_h(!node.flip_h)
+		if node is CollisionPolygon2D:
+			node.scale.x = -1 * node.scale.x
+	is_flip = !is_flip
+	
 # 所有状态都会走的逻辑
 func process_all(delta):
 	if velocity != Vector2.ZERO:
+		if (velocity.x < 0 and not is_flip) or (velocity.x > 0 and is_flip):
+			do_flip()
 		#move_inf.turn_to_position(self, global_position + velocity * delta, self.rotation_speed, delta)	# 转向速度方向
 		move_and_slide(velocity)
 
@@ -141,14 +155,15 @@ func status_process(cur_status, delta):
 """渲染函数"""
 # 注意, 父类会被隐式调用
 func _ready():
-	add_to_group("unit")	# 将自己的节点列为武器平台分组
+	add_to_group("unit_base")	# 将自己的节点列为单位
 	# 阵营所属
 	if is_instance_valid(myowner):
 		faction = myowner.faction
-	# 子模块也同样的阵营标志
+	# 子模块也同样的阵营标志, 和所属
 	for child in get_children():
-		if "unit" in child.get_groups():
+		if "module_base" in child.get_groups():
 			child.faction = faction
+			child.myowner = self
 
 func _process(delta):
 	input_process()
@@ -161,7 +176,6 @@ func _on_Detect_body_entered(body):
 	if faction_inf.is_friendly(faction, body.faction):
 		return
 	# 检查类型
-	var layer_missle = (GlobalValue.LAYER_BULLET | GlobalValue.LAYER_CRAFT)
 	match body.collision_layer:
 		GlobalValue.LAYER_SHIP, GlobalValue.LAYER_CRAFT, \
 		GlobalValue.LAYER_MISSILE, GlobalValue.LAYER_MODULE:	# 船, 飞行器, 导弹, 模块

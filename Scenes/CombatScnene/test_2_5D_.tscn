@@ -55,42 +55,35 @@ position = Vector2( -1441, 584 )
 
 [node name="Ship" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 4331, -283 )
-rotation = -3.14159
+rotation = -6.27847
 faction = 1
 
 [node name="Ship2" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 4377, -1094 )
-rotation = -3.14159
 faction = 1
 
 [node name="Ship7" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 4397, 1061 )
-rotation = -3.14159
 faction = 1
 
 [node name="Ship3" parent="Units" instance=ExtResource( 2 )]
 position = Vector2( 4331, 319 )
-rotation = -3.14159
 faction = 1
 
 [node name="Ship6" parent="Units" instance=ExtResource( 2 )]
 position = Vector2( 2492, 602 )
-rotation = -3.14159
 faction = 1
 
 [node name="Ship5" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 2509, -864 )
-rotation = -3.14159
 faction = 1
 
 [node name="Ship4" parent="Units" instance=ExtResource( 4 )]
 position = Vector2( 2486, -234 )
-rotation = -3.14159
 faction = 1
 
 [node name="Ship8" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 2601, 1378 )
-rotation = -3.14159
 faction = 1
 
 [node name="GoundView" type="Node2D" parent="."]

@@ -1,29 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Script/Bullet/MissileBase.gd" type="Script" id=1]
 [ext_resource path="res://art/download/2/missile_ball.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Effect/Bullet_Eff_Explode.tscn" type="PackedScene" id=3]
-
-[sub_resource type="Curve" id=3]
-_data = [ Vector2( 0.657303, 1 ), 0.0, -0.0138306, 0, 0, Vector2( 1, 0.00568175 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
-
-[sub_resource type="ParticlesMaterial" id=2]
-flag_disable_z = true
-direction = Vector3( -1, 0, 0 )
-spread = 3.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 300.0
-angular_velocity = 6.0
-angular_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 5.0
-scale = 7.0
-scale_random = 0.5
-scale_curve = SubResource( 4 )
+[ext_resource path="res://Scenes/Effect/Particles2D.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22.5, 7 )
@@ -35,15 +15,9 @@ script = ExtResource( 1 )
 rotation_speed = 5.0
 basic_damage = 60.0
 aoe_damage = 20.0
-is_target_locked = true
 effect_explosion = ExtResource( 3 )
 
-[node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( -21, 1.90735e-06 )
-amount = 30
-lifetime = 2.0
-local_coords = false
-process_material = SubResource( 2 )
+[node name="Particles2D" parent="." instance=ExtResource( 4 )]
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1.14441e-05, 3.8147e-06 )
