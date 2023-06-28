@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Script/Module/WeaponBattery.gd" type="Script" id=1]
+[ext_resource path="res://Script/Module/Weapon/MachineGunModule.gd" type="Script" id=1]
 [ext_resource path="res://art/download/2/mcgun_battery.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Weapon/MGun_Bullet.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Effect/Explosion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Bullet/MGun_Bullet.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 1329.0
@@ -12,14 +11,10 @@ radius = 1329.0
 collision_layer = 16
 collision_mask = 0
 script = ExtResource( 1 )
-effect_explosion = ExtResource( 4 )
-bullet = ExtResource( 3 )
-CD = 80
-firing_count = 30
-firing_CD = 2
-firing_accuracy = 0.7
 rotation_speed = 5.0
-attack_angle = 0.1
+bullet = ExtResource( 3 )
+firing_count = 30
+firing_accuracy = 0.7
 
 [node name="Detect" type="Area2D" parent="."]
 visible = false
@@ -30,14 +25,16 @@ collision_mask = 21
 shape = SubResource( 2 )
 
 [node name="Trigger" type="Node2D" parent="."]
-position = Vector2( 43, 0 )
+position = Vector2( 7, 0 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0.577832, -1.56462e-07 )
+scale = Vector2( 0.0903666, 0.078125 )
 polygon = PoolVector2Array( 12, -24, 4, -24, -9, -18, -29, -18, -29, 20, -8, 20, 6, 24, 14, 24, 31, 14, 65, 14, 65, -15, 29, -15 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -7, 0 )
-scale = Vector2( 1.106, 1.106 )
+position = Vector2( -5.96046e-08, 0 )
+scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 2 )
 
 [connection signal="area_entered" from="Detect" to="." method="_on_Detect_body_entered"]

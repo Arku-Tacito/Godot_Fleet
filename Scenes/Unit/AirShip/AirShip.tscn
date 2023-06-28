@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Script/Unit/AirUnit.gd" type="Script" id=1]
+[ext_resource path="res://art/download/2/ariship3.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Module/CommandModule.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Module/MachineGun.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Module/MissileBattery.tscn" type="PackedScene" id=5]
+
+[node name="AirShip" type="RigidBody2D"]
+mass = 3.0
+script = ExtResource( 1 )
+max_linear_force = 400.0
+max_torque_force = 100.0
+max_linear_speed = 80.0
+stop_distance = 10.0
+stop_rotation = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -48, -18, -45, -18, -45, -13, -8, -11, -3, -14, 22, -14, 22, -11, 18, -10, 19, -8, 55, -4, 57, 1, 48, 1, 45, 4, 34, 4, 12, 14, 1, 12, -4, 12, -8, 16, -14, 18, -25, 18, -29, 15, -33, 16, -37, 12, -43, 13, -43, 5, -52, 5, -52, -1, -57, -2, -56, -9, -48, -9 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 2 )
+
+[node name="MachineGun" parent="." instance=ExtResource( 4 )]
+
+[node name="MissileBattery" parent="." instance=ExtResource( 5 )]
+position = Vector2( -32, 0 )
+
+[node name="CommandModule" parent="." instance=ExtResource( 3 )]
+position = Vector2( -15, -1 )

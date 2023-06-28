@@ -14,3 +14,6 @@ const LAYER_MISSILE:int = LAYER_BULLET | LAYER_CRAFT	# 导弹
 
 """阵营定义"""
 const FACTION_UNKNOWN:int = -1
+
+"""状态"""
+enum STATUS {IDLE, DIE, ATTACK, HIT, MOVE}	# 状态类型

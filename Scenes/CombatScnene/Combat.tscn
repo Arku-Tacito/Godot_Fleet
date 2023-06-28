@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Script/Camera/CameraBase.gd" type="Script" id=1]
+[ext_resource path="res://art/download/2/Sunset Over Minimalistic Mountains.png" type="Texture" id=2]
+[ext_resource path="res://art/download/2/aav.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Unit/AirShip/AirShip.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Script/Manager/CombatManager.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Unit/Vehicle/Vehicle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://RigidVersion/Scenes/Sprite_move.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Unit/AirShip/CannonShip.tscn" type="PackedScene" id=8]
+
+[node name="Combat" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="CameraBase" type="Camera2D" parent="."]
+position = Vector2( 510, 300 )
+current = true
+script = ExtResource( 1 )
+zoom_min = 0.2
+zoom_max = 1.0
+
+[node name="BackGround" type="Sprite" parent="."]
+visible = false
+position = Vector2( 510, 301 )
+scale = Vector2( 1.0625, 1.10741 )
+texture = ExtResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 32
+collision_mask = 49
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 0, 518, 69, 486, 132, 467, 200, 494, 280, 494, 319, 483, 398, 500, 481, 483, 534, 492, 587, 491, 600, 502, 682, 492, 792, 448, 832, 446, 860, 462, 925, 457, 964, 467, 1005, 450, 1024, 463, 1023, 600, -1, 601 )
+
+[node name="Target" type="Sprite" parent="."]
+position = Vector2( 704, 227 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 3 )
+script = ExtResource( 7 )
+
+[node name="Vehicle" parent="." instance=ExtResource( 6 )]
+position = Vector2( 142, 456 )
+faction = 2
+
+[node name="AirShip" parent="." instance=ExtResource( 8 )]
+position = Vector2( -5, 119 )
+faction = 2
+
+[node name="Unit" parent="." instance=ExtResource( 4 )]
+position = Vector2( 59, 34 )
+faction = 2
+
+[node name="Unit2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 985, 135 )
+faction = 1
+
+[node name="Vehicle2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 832, 439 )
+faction = 1
+
+[node name="AirShip2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1009, 54 )
+faction = 1

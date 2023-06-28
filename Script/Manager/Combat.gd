@@ -1,5 +1,5 @@
 """战场管理"""
-class_name CombatManager extends Node2D
+class_name Combat extends Node2D
 
 # 处理爆炸信号
 func _on_explosion_effect(eff_obj, position, rotation):

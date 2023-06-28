@@ -9,10 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Area2D",
-"class": "BulletBase",
+"base": "Unit",
+"class": "AirUnit",
 "language": "GDScript",
-"path": "res://Script/Bullet/BulletBase.gd"
+"path": "res://Script/Unit/AirUnit.gd"
+}, {
+"base": "Area2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://Script/Bullet/Bullet.gd"
 }, {
 "base": "Camera2D",
 "class": "CameraBase",
@@ -20,72 +25,89 @@ _global_script_classes=[ {
 "path": "res://Script/Camera/CameraBase.gd"
 }, {
 "base": "Node2D",
+"class": "Combat",
+"language": "GDScript",
+"path": "res://Script/Manager/Combat.gd"
+}, {
+"base": "Node2D",
 "class": "CombatManager",
 "language": "GDScript",
-"path": "res://Script/Scene/CombatManager.gd"
+"path": "res://Script/Manager/CombatManager.gd"
+}, {
+"base": "Module",
+"class": "CommandModule",
+"language": "GDScript",
+"path": "res://Script/Module/CommandModule.gd"
 }, {
 "base": "Node2D",
 "class": "ExplosionBase",
 "language": "GDScript",
 "path": "res://Script/Effect/ExplosionBase.gd"
 }, {
-"base": "Reference",
-"class": "FactionInf",
+"base": "Unit",
+"class": "GroudUnit",
 "language": "GDScript",
-"path": "res://Script/Common/FactionInf.gd"
+"path": "res://Script/Unit/GroundUnit.gd"
 }, {
-"base": "BulletBase",
-"class": "MissileBase",
+"base": "WeaponModule",
+"class": "MachinegunModule",
 "language": "GDScript",
-"path": "res://Script/Bullet/MissileBase.gd"
+"path": "res://Script/Module/Weapon/MachineGunModule.gd"
+}, {
+"base": "Bullet",
+"class": "Missile",
+"language": "GDScript",
+"path": "res://Script/Bullet/Missile.gd"
 }, {
 "base": "StaticBody2D",
-"class": "ModuleBase",
+"class": "Module",
 "language": "GDScript",
-"path": "res://Script/Module/ModuleBase.gd"
-}, {
-"base": "Resource",
-"class": "MoveInf",
-"language": "GDScript",
-"path": "res://Script/Common/MoveInf.gd"
+"path": "res://Script/Module/Module.gd"
 }, {
 "base": "Resource",
 "class": "TargetManager",
 "language": "GDScript",
-"path": "res://Script/Common/TargetManager.gd"
+"path": "res://Script/Manager/TargetManager.gd"
 }, {
-"base": "KinematicBody2D",
-"class": "UnitBase",
+"base": "RigidBody2D",
+"class": "Unit",
 "language": "GDScript",
-"path": "res://Script/Unit/UnitBase.gd"
+"path": "res://Script/Unit/Unit.gd"
 }, {
-"base": "ModuleBase",
-"class": "WeaponBattery",
+"base": "Module",
+"class": "WeaponModule",
 "language": "GDScript",
-"path": "res://Script/Module/WeaponBattery.gd"
+"path": "res://Script/Module/Weapon/WeaponModule.gd"
 } ]
 _global_script_class_icons={
-"BulletBase": "",
+"AirUnit": "",
+"Bullet": "",
 "CameraBase": "",
+"Combat": "",
 "CombatManager": "",
+"CommandModule": "",
 "ExplosionBase": "",
-"FactionInf": "",
-"MissileBase": "",
-"ModuleBase": "",
-"MoveInf": "",
+"GroudUnit": "",
+"MachinegunModule": "",
+"Missile": "",
+"Module": "",
 "TargetManager": "",
-"UnitBase": "",
-"WeaponBattery": ""
+"Unit": "",
+"WeaponModule": ""
 }
 
 [application]
 
 config/name="Fleet"
+run/main_scene="res://Scenes/CombatScnene/Combat.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-GlobalValue="*res://Script/Global/GlobalValue.gd"
+g_value="*res://Script/Global/g_value.gd"
+g_func="*res://Script/Global/g_func.gd"
+move_inf="*res://Script/Global/Interface/move_inf.gd"
+faction_inf="*res://Script/Global/Interface/faction_inf.gd"
 
 [gui]
 
@@ -121,7 +143,7 @@ Left={
 
 [layer_names]
 
-2d_physics/layer_1="ship"
+2d_physics/layer_1="unit"
 2d_physics/layer_2="bullet"
 2d_physics/layer_3="craft"
 2d_physics/layer_4="building"
