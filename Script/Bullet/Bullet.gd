@@ -106,6 +106,7 @@ func _physics_process(delta):
 
 """事件函数"""
 func _on_Detect_body_entered(body):
+	print_debug()
 	if check_target_type(body) and is_friendly(body):
 		return
 	process_damage(body)
