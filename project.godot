@@ -6,86 +6,17 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Area2D",
-"class": "BulletBase",
-"language": "GDScript",
-"path": "res://Script/Bullet/BulletBase.gd"
-}, {
-"base": "Camera2D",
-"class": "CameraBase",
-"language": "GDScript",
-"path": "res://Script/Camera/CameraBase.gd"
-}, {
-"base": "Node2D",
-"class": "CombatManager",
-"language": "GDScript",
-"path": "res://Script/Scene/CombatManager.gd"
-}, {
-"base": "Node2D",
-"class": "ExplosionBase",
-"language": "GDScript",
-"path": "res://Script/Effect/ExplosionBase.gd"
-}, {
-"base": "Reference",
-"class": "FactionInf",
-"language": "GDScript",
-"path": "res://Script/Common/FactionInf.gd"
-}, {
-"base": "BulletBase",
-"class": "MissileBase",
-"language": "GDScript",
-"path": "res://Script/Bullet/MissileBase.gd"
-}, {
-"base": "StaticBody2D",
-"class": "ModuleBase",
-"language": "GDScript",
-"path": "res://Script/Module/ModuleBase.gd"
-}, {
-"base": "Resource",
-"class": "MoveInf",
-"language": "GDScript",
-"path": "res://Script/Common/MoveInf.gd"
-}, {
-"base": "Resource",
-"class": "TargetManager",
-"language": "GDScript",
-"path": "res://Script/Common/TargetManager.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "UnitBase",
-"language": "GDScript",
-"path": "res://Script/Unit/UnitBase.gd"
-}, {
-"base": "ModuleBase",
-"class": "WeaponBattery",
-"language": "GDScript",
-"path": "res://Script/Module/WeaponBattery.gd"
-} ]
-_global_script_class_icons={
-"BulletBase": "",
-"CameraBase": "",
-"CombatManager": "",
-"ExplosionBase": "",
-"FactionInf": "",
-"MissileBase": "",
-"ModuleBase": "",
-"MoveInf": "",
-"TargetManager": "",
-"UnitBase": "",
-"WeaponBattery": ""
-}
+config_version=5
 
 [application]
 
 config/name="Fleet"
+config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
 [autoload]
 
-GlobalValue="*res://Script/Global/GlobalValue.gd"
+GlobalValue="*res://script/common/GlobalValue.gd"
 
 [gui]
 
@@ -95,28 +26,28 @@ common/drop_mouse_on_gui_input_disabled=true
 
 attack={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 MoveUp={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":87,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 MoveDown={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":83,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 Right={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":68,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 Left={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":65,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 
 [layer_names]
@@ -134,4 +65,4 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/defaults/default_environment="res://default_env.tres"

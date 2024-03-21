@@ -49,7 +49,7 @@ func update_target():
 		return
 	# 目标是无效的, 更新下一个
 	target_set.erase(attack_target)# 集合中去掉记录
-	if not await_target_list.empty():	# 更新下一个目标
+	if not await_target_list.is_empty():	# 更新下一个目标
 		attack_target = await_target_list.pop_front() # 目标队列第一个目标添加进来
 		return
 	else:

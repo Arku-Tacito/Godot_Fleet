@@ -2,8 +2,8 @@
 class_name MissileBase extends BulletBase
 
 """外部属性"""
-export var health:float = 30				# 血量
-export var is_target_locked = true			# 是否锁定目标	
+@export var health:float = 30				# 血量
+@export var is_target_locked = true			# 是否锁定目标	
 
 """内部属性"""
 # 外部接口

@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://art/ship/ship_struction.png" type="Texture2D" id=1]
+[ext_resource path="res://art/ship/ship_struction_end.png" type="Texture2D" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5100.34
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 260, 102.5 )
+
+[node name="Base" type="CharacterBody2D"]
+position = Vector2( 0, -2 )
+collision_mask = 9
+
+[node name="Detect" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -19, 1 )
+shape = SubResource( 2 )
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2( 168.375, 0.387863 )
+rotation = 1.5708
+scale = Vector2( 0.65602, 0.529539 )
+texture = ExtResource( 2 )
+
+[node name="Sprite3" type="Sprite2D" parent="."]
+position = Vector2( -187.625, -0.612137 )
+rotation = -1.5708
+scale = Vector2( 0.652245, 0.597498 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite2D" parent="."]
+position = Vector2( 1.64548, 2.38791 )
+rotation = 1.5708
+scale = Vector2( 0.96155, 0.583997 )
+texture = ExtResource( 1 )
+
+[connection signal="body_entered" from="Detect" to="." method="_on_Detect_body_entered"]
+[connection signal="body_exited" from="Detect" to="." method="_on_Detect_body_exited"]

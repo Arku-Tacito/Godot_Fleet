@@ -4,12 +4,12 @@ class_name BulletBase extends Area2D
 """常量与枚举定义"""
 
 """外部属性"""
-export var speed:float = 500		 		# 速度
-export var rotation_speed:float = 1.0		# 转向速度
-export var life_time:int = 1000	 			# 基础存活时间
-export var basic_damage:float = 5.0 		# 基础伤害
-export var aoe_damage:float = 3.0			# 范围爆炸伤害
-export var cross_level:int = 1				# 穿击等级, 撞击物体后是否继续前进
+@export var speed:float = 500		 		# 速度
+@export var rotation_speed:float = 1.0		# 转向速度
+@export var life_time:int = 1000	 			# 基础存活时间
+@export var basic_damage:float = 5.0 		# 基础伤害
+@export var aoe_damage:float = 3.0			# 范围爆炸伤害
+@export var cross_level:int = 1				# 穿击等级, 撞击物体后是否继续前进
 
 """内部属性"""
 var faction:int = GlobalValue.FACTION_UNKNOWN	# 阵营
@@ -24,7 +24,7 @@ var target_manager:TargetManager = TargetManager.new()	# 攻击目标管理器
 var faction_inf:FactionInf = FactionInf.new()			# 阵营操作接口
 
 # 效果
-export (PackedScene) var effect_explosion	# 爆炸效果
+@export (PackedScene) var effect_explosion	# 爆炸效果
 signal explode(eff_obj, position, rotation)
 
 """接口函数"""

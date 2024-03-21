@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Texture2D" path="res://art/ship/ship_struction.png" id="1"]
+[ext_resource type="Texture2D" path="res://art/ship/ship_struction_end.png" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/effect/Explosion.tscn" id="3"]
+[ext_resource type="Script" path="res://script/object/unit/UnitBase.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://dodf3wibfvc1s" path="res://scenes/object/module/Cannon.tscn" id="5"]
+[ext_resource type="Texture2D" path="res://art/download/2/ariship1.png" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/object/module/MachineGun.tscn" id="7"]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5100.34
+
+[node name="Ship" type="CharacterBody2D"]
+position = Vector2( 0, -2 )
+collision_mask = 9
+script = ExtResource( 4 )
+health = 500.0
+speed = 100.0
+rotation_speed = 2.0
+attack_range = 1800.0
+effect_explosion = ExtResource( 3 )
+
+[node name="Detect" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 15.5, -15.25 )
+polygon = PackedVector2Array( -497.5, -121.75, -487.5, -91.75, -412.5, -37.75, -416.5, 56.25, -211.5, 97.25, -189.5, 133.25, -115.5, 138.25, -101.5, 122.25, -52.5, 137.25, 30.5, 136.25, 288.5, 45.25, 412.5, 41.25, 411.5, -7.75, 483.5, -42.75, 468.5, -94.75, -134.5, -90.75, -143.5, -110.75, -210.5, -106.75, -251.5, -104.75, -283.5, -123.75 )
+
+[node name="Sprite4" type="Sprite2D" parent="."]
+texture = ExtResource( 6 )
+
+[node name="Cannon2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 244, -32 )
+
+[node name="MachineGun" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1, -1 )
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2( 168.375, 0.387863 )
+rotation = 1.5708
+scale = Vector2( 0.65602, 0.529539 )
+texture = ExtResource( 2 )
+
+[node name="Sprite3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2( -187.625, -0.612137 )
+rotation = -1.5708
+scale = Vector2( 0.652245, 0.597498 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2( 1.64548, 2.38791 )
+rotation = 1.5708
+scale = Vector2( 0.96155, 0.583997 )
+texture = ExtResource( 1 )
+
+[connection signal="body_entered" from="Detect" to="." method="_on_Detect_body_entered"]
+[connection signal="body_exited" from="Detect" to="." method="_on_Detect_body_exited"]

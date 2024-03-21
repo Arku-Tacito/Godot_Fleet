@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://dodf3wibfvc1s"]
+
+[ext_resource type="Script" path="res://script/object/module/WeaponBattery.gd" id="1"]
+[ext_resource type="Texture2D" path="res://art/download/2/cannon_battery.png" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/object/bullet/Cannon_Ball.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/effect/Explosion.tscn" id="5"]
+[ext_resource type="Texture2D" path="res://Asset/Img/Unit/Module/ship_machinegun.png" id="5_abg5e"]
+[ext_resource type="Texture2D" path="res://Asset/Img/Unit/Module/ship_cannon.png" id="6_ymrs1"]
+[ext_resource type="Texture2D" path="res://Asset/Img/Unit/Module/human.png" id="7_6xk7s"]
+[ext_resource type="Texture2D" path="res://Asset/Img/Bullet/bullet_ship_machine.png" id="8_2eiwv"]
+[ext_resource type="Texture2D" path="res://Asset/Img/Bullet/bullet_ship_cannon.png" id="8_l0nxv"]
+
+[sub_resource type="CircleShape2D" id="2"]
+radius = 2005.0
+
+[node name="Cannon" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1")
+effect_explosion = ExtResource("5")
+bullet = ExtResource("3")
+firing_accuracy = 0.8
+rotation_speed = 5.0
+attack_angle = 0.1
+
+[node name="Detect" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 21
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect"]
+shape = SubResource("2")
+
+[node name="Trigger" type="Node2D" parent="."]
+position = Vector2(54, 0)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0.5, 0)
+polygon = PackedVector2Array(5.5, -33, -26.5, -33, -26.5, 32, 7.5, 33, 34.5, 13, 84.5, 13, 84.5, -13, 32.5, -13)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.23, 1.651)
+texture = ExtResource("2")
+
+[node name="ShipMachinegun" type="Sprite2D" parent="."]
+position = Vector2(45, 104)
+texture = ExtResource("5_abg5e")
+
+[node name="ShipCannon" type="Sprite2D" parent="."]
+position = Vector2(60, 196)
+texture = ExtResource("6_ymrs1")
+
+[node name="BulletShipMachine" type="Sprite2D" parent="."]
+position = Vector2(125, 104)
+texture = ExtResource("8_2eiwv")
+
+[node name="BulletShipCannon" type="Sprite2D" parent="."]
+position = Vector2(138, 196)
+texture = ExtResource("8_l0nxv")
+
+[node name="Human" type="Sprite2D" parent="."]
+position = Vector2(215, 195)
+texture = ExtResource("7_6xk7s")
+
+[connection signal="body_entered" from="Detect" to="." method="_on_Detect_body_entered"]
+[connection signal="body_exited" from="Detect" to="." method="_on_Detect_body_exited"]

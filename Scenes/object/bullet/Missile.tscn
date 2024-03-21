@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://script/bullet/MissileBase.gd" id="1"]
+[ext_resource type="Texture2D" path="res://art/download/2/missile_ball.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://blyqiblujmeul" path="res://scenes/effect/Bullet_Eff_Explode.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/effect/Particles2D.tscn" id="4"]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 22.5, 7 )
+
+[node name="Missile" type="Area2D"]
+collision_layer = 6
+collision_mask = 29
+script = ExtResource( 1 )
+rotation_speed = 5.0
+basic_damage = 60.0
+aoe_damage = 20.0
+effect_explosion = ExtResource( 3 )
+
+[node name="GPUParticles2D" parent="." instance=ExtResource( 4 )]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2( 1.14441e-05, 3.8147e-06 )
+scale = Vector2( 0.376, 0.376 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

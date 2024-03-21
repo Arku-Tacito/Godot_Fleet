@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://script/bullet/BulletBase.gd" id="1"]
+[ext_resource type="Texture2D" path="res://art/download/2/cannon_ball.png" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/effect/Bullet_Eff_Medium.tscn" id="3"]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 11, 6 )
+
+[node name="CaonnonBall" type="Area2D"]
+collision_layer = 2
+collision_mask = 29
+script = ExtResource( 1 )
+basic_damage = 30.0
+aoe_damage = 10.0
+cross_level = 2
+effect_explosion = ExtResource( 3 )
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2( -9.53674e-07, -4.76837e-07 )
+scale = Vector2( 0.365, 0.365 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

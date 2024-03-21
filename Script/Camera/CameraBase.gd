@@ -3,13 +3,13 @@ class_name CameraBase extends Camera2D
 
 """属性"""
 # 外部属性
-export var zoom_speed:float = 0.1			# 缩放速度
-export var translate_speed:float = 0.1		# 平移速度
-export var zoom_lerp:int = 8				# 缩放平滑度
+@export var zoom_speed:float = 0.1			# 缩放速度
+@export var translate_speed:float = 0.1		# 平移速度
+@export var zoom_lerp:int = 8				# 缩放平滑度
 
 # 相机缩放限制
-export var zoom_min:float = 2
-export var zoom_max:float = 10
+@export var zoom_min:float = 2
+@export var zoom_max:float = 10
 
 var cur_zoom:Vector2 = zoom					# 当前的缩放
 
@@ -91,9 +91,9 @@ func _input(event):
 		return
 	if event is InputEventMouseButton:
 		match event.button_index:
-			BUTTON_WHEEL_UP, BUTTON_WHEEL_DOWN:	# 滚轮缩放
-				do_zoom(event.button_index == BUTTON_WHEEL_DOWN)	# 往上拉放大
-			BUTTON_MIDDLE:						# 中键拖动
+			MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN:	# 滚轮缩放
+				do_zoom(event.button_index == MOUSE_BUTTON_WHEEL_DOWN)	# 往上拉放大
+			MOUSE_BUTTON_MIDDLE:						# 中键拖动
 				do_drag(event.is_pressed(), event.position)
 	# 更新拖动的位置
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
